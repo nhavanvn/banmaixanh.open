@@ -1,0 +1,19 @@
+---
+import Layout from '~/layouts/page.astro';
+
+import Contact from '~/components/content/contact.astro';
+
+import Form from '~/components/content/form.astro';
+
+const metadata = {
+	title: 'Đăng ký thành viên',
+	description: "Diễn đàn luôn rộng cửa chào đón những ai yêu thích, thực hành viết lách mỗi ngày để trở thành nhà văn tương lai.",
+};
+---
+<Layout metadata={metadata}>
+
+	<Contact/>
+
+	<Form/>
+
+</Layout>

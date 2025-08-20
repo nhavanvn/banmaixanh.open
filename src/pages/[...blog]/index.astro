@@ -1,0 +1,47 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import Layout from '~/layouts/page.astro';
+
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getStaticPathsBlogPost, blogPostRobots } from '~/utils/blog';
+import { findImage } from '~/utils/images';
+
+import Single from '~/components/article/single.astro';
+
+import Form from '~/components/content/form.astro';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+	return await getStaticPathsBlogPost();
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { post } = Astro.props as Props;
+
+const url = getCanonical(getPermalink(post.permalink, 'post'));
+const image = await findImage(post.image) as string | undefined;
+
+const metadata = {
+	title: post.title,
+	description: post.description,
+	robots: {
+		index: blogPostRobots?.index,
+		follow: blogPostRobots?.follow,
+	},
+	openGraph: {
+		type: 'article',
+		...(image ? { images: [{ url: image, width: 1200, height: 630 }] } : {}),
+	},
+	...post?.metadata,
+	canonical: post?.metadata?.canonical || url,
+};
+---
+
+<Layout metadata={metadata}>
+
+	<Single post={{ ...post, image }} url={url}/>
+
+	<Form/>
+
+</Layout>

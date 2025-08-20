@@ -1,0 +1,22 @@
+---
+import type { Headline as Props } from '~/types';
+import { twMerge } from 'tailwind-merge';
+
+export interface Props {
+	title?: string;
+}
+
+const {
+	title = await Astro.slots.render('title'),
+} = Astro.props;
+---
+
+{(title) && (
+
+	<div>
+
+		{title && <h2 set:html={title} />}
+
+	</div>
+
+)}

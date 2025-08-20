@@ -1,0 +1,26 @@
+---
+import Layout from '~/layouts/page.astro';
+
+import Hero from '~/components/content/hero.astro';
+import Catalogue from '~/components/article/catalogue.astro';
+
+import Form from '~/components/content/form.astro';
+
+const metadata = {
+	title: 'Diễn đàn viết lách nhà văn tương lai',
+};
+---
+
+<Layout metadata={metadata}>
+
+	<Hero/>
+
+	<Catalogue tags="viet-lach"/>
+
+	<Catalogue tags="khoa-hoc"/>
+
+	<Catalogue tags="nghien-cuu"/>
+
+	<Form/>
+
+</Layout>

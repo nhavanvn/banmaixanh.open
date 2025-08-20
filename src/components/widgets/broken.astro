@@ -1,0 +1,36 @@
+---
+import Hero from '~/components/widgets/hero.astro';
+---
+
+<Hero
+
+	title="404."
+	subtitle="Tự động chuyển về trang chủ sau <span id='countdown'>5</span> giây."
+
+	image={{
+		src: "https://image.nhavantuonglai.com/image/cover/001-717.jpg",
+		alt: "Diễn đàn viết lách nhà văn tương lai.",
+		title: "Diễn đàn viết lách nhà văn tương lai."
+	}}
+
+/>
+
+<script>
+
+	let timeLeft = 5;
+	const countdownElement = document.getElementById('countdown');
+	
+	const countdownInterval = setInterval(() => {
+		timeLeft -= 1;
+		
+		if (countdownElement) {
+			countdownElement.textContent = timeLeft;
+		}
+		
+		if (timeLeft <= 0) {
+			clearInterval(countdownInterval);
+			window.location.href = 'https://nhavan.vn';
+		}
+	}, 1000);
+
+</script>

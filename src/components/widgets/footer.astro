@@ -1,0 +1,40 @@
+---
+import Since from '~/components/javascript/since.astro';
+import Address from '~/components/javascript/address.astro';
+
+const classes = "max-w-7xl mx-auto px-4 sm:px-6";
+---
+
+<footer class="relative not-prose bg-white border-t border-gray-200">
+
+	<div class={`${classes} py-12`}>
+
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+			<div class="w-full">
+
+				<div class="grid grid-cols-1 gap-6">
+
+					<Since/>
+
+				</div>
+
+			</div>
+
+			<div class="w-full">
+
+				<div class="space-y-6">
+
+					<div>
+						<Address/>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>

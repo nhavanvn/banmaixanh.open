@@ -1,0 +1,60 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
+
+import Layout from '~/layouts/page.astro';
+import Hero from '~/components/widgets/hero.astro';
+
+import Articlelist from '~/components/article/articlelist.astro';
+import Pagination from '~/components/article/pagination.astro';
+
+import Form from '~/components/content/form.astro';
+
+export const prerender = true;
+
+export const getStaticPaths = (async ({ paginate }) =>{
+	return await getStaticPathsBlogList({ paginate });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props as Props;
+const currentPage = page.currentPage ?? 1;
+
+const metadata = {
+	title: `Danh sách bài viết ${currentPage > 1 ? ` | Trang ${currentPage}` : ''}`,
+	description: `Danh sách bài viết ${currentPage > 1 ? ` | Trang ${currentPage}` : ''} gồm những bài hiện có, đã và đang xuất bản trên website, giúp người đọc nhanh chóng, dễ dàng tìm thấy thông tin mình cần.`,
+	robots: {
+		index: blogListRobots?.index,
+		follow: blogListRobots?.follow,
+	},
+	openGraph: {
+		type: 'blog',
+	},
+};
+---
+
+<Layout metadata={metadata}>
+
+	<Hero
+
+		title={metadata.title}
+		subtitle={metadata.description}
+		image="https://image.nhavantuonglai.com/image/cover/001-730.jpg"
+		alt="Diễn đàn viết lách nhà văn tương lai."
+
+	/>
+
+	<section class="relative max-w-7xl mx-auto px-4 sm:px-6">
+
+		<h2>Bài viết trang số {currentPage}:<h2/>
+
+		<Articlelist posts={page.data}/>
+
+		<Pagination prevUrl={page.url.prev} nextUrl={page.url.next}/>
+
+	</section>
+
+	<Form/>
+
+</Layout>

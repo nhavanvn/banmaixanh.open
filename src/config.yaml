@@ -1,0 +1,62 @@
+site:
+  name: Diễn đàn viết lách nhà văn tương lai
+  site: "https://nhavan.vn"
+  base: "/"
+  trailingSlash: false
+
+metadata:
+  title:
+    default: Diễn đàn viết lách nhà văn tương lai
+    template: "%s | nhavantuonglai"
+  description: "Nhà văn tương lai là diễn đàn dành cho các bạn trẻ đam mê thực hành viết lách. Đây là không gian tự do, thoải mái chia sẻ và khơi gợi niềm vui khi viết."
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: nhavantuonglai
+    type: website
+    locale: vi_VN
+    image:
+      url: "https://image.nhavantuonglai.com/image/cover/001-737.jpg"
+      width: 1200
+      height: 630
+      alt: "Nhà văn tương lai là diễn đàn dành cho các bạn trẻ đam mê thực hành viết lách. Đây là không gian tự do, thoải mái chia sẻ và khơi gợi niềm vui khi viết."
+  twitter:
+    card: summary_large_image
+    site: "@nhavantuonglai"
+    creator: "@nhavantuonglai"
+    image: "https://image.nhavantuonglai.com/image/cover/001-737.jpg"
+    description: "Nhà văn tương lai là diễn đàn dành cho các bạn trẻ đam mê thực hành viết lách. Đây là không gian tự do, thoải mái chia sẻ và khơi gợi niềm vui khi viết."
+
+i18n:
+  language: vi
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: true
+    postsPerPage: 15
+
+    post:
+      isEnabled: true
+      permalink: "article/%slug%"
+      robots:
+        index: true
+
+    list:
+      isEnabled: true
+      pathname: "article"
+      robots:
+        index: true
+
+    tag:
+      isEnabled: true
+      pathname: "tags"
+      robots:
+        index: true
+
+    isRelatedPostsEnabled: true
+    relatedPostsCount: 6
+
+ui:
+  theme: "system"
