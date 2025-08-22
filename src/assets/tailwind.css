@@ -47,6 +47,10 @@
 		@apply rounded-md p-3 mb-6 bg-gray-100 whitespace-pre-wrap break-words text-justify text-xl;
 	}
 
+	code {
+		@apply text-primary font-mono; 
+	}
+
 }
 
 @layer components {
